@@ -50,6 +50,52 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        /* Typing animation for role text */
+        @keyframes typing {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .typing-cursor {
+            animation: typing 1s infinite;
+            margin-left: 2px;
+        }
+
+        /* Gradient text animation */
+        @keyframes gradient {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .animate-gradient {
+            background-size: 200% auto;
+            animation: gradient 3s ease infinite;
+        }
+
+        /* Typing text animation */
+        .typing-text {
+            position: relative;
+        }
+
+        .typing-text::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: currentColor;
+            animation: typing 1s infinite;
+        }
+
         /* Fade in animation */
         @keyframes fadeIn {
             from {
@@ -175,6 +221,33 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
+        /* Modern Project Card Styles */
+        .project-card-modern {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .project-card-modern:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-card-modern .bg-white {
+            transition: all 0.3s ease;
+        }
+
+        .project-card-modern:hover .bg-white {
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image hover effect */
+        .project-card-modern img {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .project-card-modern:hover img {
+            transform: scale(1.1);
+        }
+
         /* Skill badge hover effect with rotation */
         .skill-badge {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -184,6 +257,48 @@
         .skill-badge:hover {
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Modern Skill Card Styles */
+        .skill-card-modern {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .skill-card-modern:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Skill Progress Bar Animation */
+        .skill-progress {
+            width: 0%;
+            transition: width 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .skill-progress.animated {
+            width: var(--progress-width);
         }
 
         /* Navigation link hover effect with underline */
@@ -299,12 +414,89 @@
             }
         }
 
+        /* Slow spin animation for profile image border */
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+
         .rotating-border {
             position: relative;
             border-radius: 50%;
             background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #4facfe);
             background-size: 400% 400%;
             animation: gradientShift 3s ease infinite, rotate 10s linear infinite;
+        }
+
+        /* Contact Section Styles */
+        .contact-card {
+            background: white;
+            border: 2px solid #f3f4f6;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            border-color: #a78bfa;
+            box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .social-link {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        /* Blob animation for background */
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* Form input focus effects */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
         }
 
         /* Section spacing */
@@ -420,8 +612,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg text-white pt-24 pb-20 px-4 relative overflow-hidden">
-        <!-- Animated background particles -->
+    <section id="home" class="gradient-bg text-white pt-32 pb-24 px-4 relative overflow-hidden min-h-screen flex items-center">
+        <!-- Enhanced Animated background particles -->
         <div class="particles">
             <div class="particle" style="left: 10%; width: 20px; height: 20px; animation-delay: 0s;"></div>
             <div class="particle" style="left: 20%; width: 15px; height: 15px; animation-delay: 2s;"></div>
@@ -433,236 +625,957 @@
             <div class="particle" style="left: 80%; width: 19px; height: 19px; animation-delay: 14s;"></div>
             <div class="particle" style="left: 90%; width: 21px; height: 21px; animation-delay: 16s;"></div>
         </div>
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 fade-in float-animation">Ubaoha Chinemerem</h1>
-            <p class="text-xl md:text-2xl mb-6 text-purple-100 fade-in delay-200">Web Developer & Designer</p>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto text-purple-100 mb-8 fade-in delay-300">
-                Crafting beautiful and functional web experiences with modern technologies
+        
+        <!-- Grid pattern overlay -->
+        <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+        
+        <div class="max-w-7xl mx-auto text-center relative z-10 w-full">
+            <!-- Greeting Badge -->
+            <div class="inline-flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 fade-in border border-white/20">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span class="text-sm font-medium">Available for new projects</span>
+            </div>
+            
+            <!-- Main Heading with Typing Effect -->
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 fade-in float-animation">
+                <span class="block mb-2">Hi, I'm</span>
+                <span class="block bg-gradient-to-r from-white via-purple-100 to-white bg-clip-text text-transparent animate-gradient">
+                    Ubaoha Chinemerem
+                </span>
+            </h1>
+            
+            <!-- Animated Role Text -->
+            <div class="mb-6 fade-in delay-200">
+                <p class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                    <span class="inline-block typing-text">Web Developer</span>
+                    <span class="inline-block typing-cursor">|</span>
+                </p>
+                <p class="text-xl md:text-2xl text-purple-100 mt-2">& Designer</p>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-purple-100 mb-12 fade-in delay-300 leading-relaxed">
+                I craft <span class="font-semibold text-white">beautiful</span> and <span class="font-semibold text-white">functional</span> web experiences 
+                using modern technologies. Turning ideas into reality, one line of code at a time.
             </p>
-            <div class="flex justify-center space-x-4 fade-in delay-400">
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16 fade-in delay-400">
                 <a href="#projects"
-                    class="btn-primary bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition duration-300 relative z-10">
-                    View My Work
+                    class="group relative bg-white text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 hover:scale-105 inline-flex items-center space-x-2 overflow-hidden">
+                    <span class="relative z-10 flex items-center space-x-2">
+                        <span>View My Work</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-indigo-400 opacity-0 group-hover:opacity-10 transition-opacity"></div>
                 </a>
                 <a href="#contact"
-                    class="btn-primary bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition duration-300 relative z-10">
-                    Get In Touch
+                    class="group relative bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 inline-flex items-center space-x-2 backdrop-blur-sm">
+                    <span class="flex items-center space-x-2">
+                        <span>Get In Touch</span>
+                        <svg class="w-5 h-5 transform group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </span>
                 </a>
             </div>
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto fade-in delay-500">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-1">3+</div>
+                    <div class="text-sm md:text-base text-purple-200">Projects</div>
+                </div>
+                <div class="text-center border-x border-white/20">
+                    <div class="text-3xl md:text-4xl font-bold mb-1">5+</div>
+                    <div class="text-sm md:text-base text-purple-200">Technologies</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold mb-1">100%</div>
+                    <div class="text-sm md:text-base text-purple-200">Dedicated</div>
+                </div>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex justify-center items-center space-x-6 mt-12 fade-in delay-600">
+                <a href="#" class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110 border border-white/20">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110 border border-white/20">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110 border border-white/20">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="flex flex-col items-center text-white/80 hover:text-white transition-colors">
+                <span class="text-sm mb-2">Scroll</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-4 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-up">About Me</h2>
-            <div class="text-center">
-                <div
-                    class="w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl font-bold text-white animate-on-scroll scale-in pulse-animation">
-                    UC
+    <section id="about" class="py-20 px-4 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div
+            class="absolute top-20 left-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
+        </div>
+        <div
+            class="absolute bottom-20 right-0 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
+                    About <span
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Me</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Get to know me better - my journey, passion, and what drives me
+                </p>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Profile Image Card -->
+                <div class="lg:col-span-1 animate-on-scroll fade-left">
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl border border-gray-100 sticky top-24">
+                        <div class="relative w-full aspect-square max-w-xs mx-auto">
+                            <!-- Decorative gradient ring -->
+                            <div
+                                class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-600 p-1 animate-spin-slow">
+                                <div class="w-full h-full rounded-full bg-white"></div>
+                            </div>
+                            <!-- Image container -->
+                            <div
+                                class="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white transform transition-all duration-300 hover:scale-105">
+                                <img src="src/images/IMG_0067_converted.jpg" alt="Ubaoha Chinemerem"
+                                    class="w-full h-full object-cover" loading="lazy" decoding="async"
+                                    onerror="handleImageError(this)">
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="mt-8 space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+                                <span class="text-gray-600 font-medium">Experience</span>
+                                <span class="text-purple-600 font-bold">Growing</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-indigo-50 rounded-lg">
+                                <span class="text-gray-600 font-medium">Projects</span>
+                                <span class="text-indigo-600 font-bold">3+</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+                                <span class="text-gray-600 font-medium">Status</span>
+                                <span class="text-purple-600 font-bold">Available</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-lg text-gray-600 leading-relaxed mb-4 animate-on-scroll fade-up delay-200">
-                    I'm a passionate web developer and designer with a keen eye for creating
-                    beautiful, user-friendly interfaces. I love turning complex problems into
-                    simple, elegant solutions.
-                </p>
-                <p class="text-lg text-gray-600 leading-relaxed animate-on-scroll fade-up delay-300">
-                    When I'm not coding, you can find me exploring new technologies, contributing
-                    to open-source projects, or sharing knowledge with the developer community.
-                </p>
+
+                <!-- About Content -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Introduction Card -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 animate-on-scroll fade-up delay-100">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                            <span
+                                class="w-1 h-8 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-full mr-3"></span>
+                            Who I Am
+                        </h3>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-4">
+                            I'm a passionate <span class="font-semibold text-purple-600">web developer and
+                                designer</span> with a keen eye for creating
+                            beautiful, user-friendly interfaces. I love turning complex problems into
+                            simple, elegant solutions that make a difference.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            My journey in web development started with curiosity and has evolved into a deep passion for
+                            crafting
+                            digital experiences that are both functional and delightful. I believe in writing clean,
+                            maintainable code
+                            and staying up-to-date with the latest technologies and best practices.
+                        </p>
+                    </div>
+
+                    <!-- What I Do Card -->
+                    <div
+                        class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8 shadow-xl border border-purple-100 animate-on-scroll fade-up delay-200">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span
+                                class="w-1 h-8 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-full mr-3"></span>
+                            What I Do
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Frontend Development</h4>
+                                    <p class="text-gray-600 text-sm">Building responsive and interactive user interfaces
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">UI/UX Design</h4>
+                                    <p class="text-gray-600 text-sm">Creating intuitive and visually appealing designs
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Problem Solving</h4>
+                                    <p class="text-gray-600 text-sm">Finding elegant solutions to complex challenges</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Continuous Learning</h4>
+                                    <p class="text-gray-600 text-sm">Always exploring new technologies and frameworks
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests & Hobbies Card -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 animate-on-scroll fade-up delay-300">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                            <span
+                                class="w-1 h-8 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-full mr-3"></span>
+                            Beyond Coding
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            When I'm not coding, you can find me:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 rounded-full text-sm font-semibold border border-purple-200 hover:scale-105 transition-transform">
+                                🚀 Exploring New Tech
+                            </span>
+                            <span
+                                class="px-4 py-2 bg-gradient-to-r from-indigo-100 to-indigo-50 text-indigo-700 rounded-full text-sm font-semibold border border-indigo-200 hover:scale-105 transition-transform">
+                                📚 Learning React
+                            </span>
+                            <span
+                                class="px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 rounded-full text-sm font-semibold border border-purple-200 hover:scale-105 transition-transform">
+                                💡 Open Source
+                            </span>
+                            <span
+                                class="px-4 py-2 bg-gradient-to-r from-indigo-100 to-indigo-50 text-indigo-700 rounded-full text-sm font-semibold border border-indigo-200 hover:scale-105 transition-transform">
+                                🤝 Community
+                            </span>
+                            <span
+                                class="px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 rounded-full text-sm font-semibold border border-purple-200 hover:scale-105 transition-transform">
+                                🎨 Design Trends
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div
+                        class="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700 rounded-2xl p-8 text-white shadow-2xl animate-on-scroll fade-up delay-400">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">Let's Work Together</h3>
+                                <p class="text-purple-100">I'm always open to discussing new projects and opportunities
+                                </p>
+                            </div>
+                            <a href="#contact"
+                                class="bg-white text-purple-600 px-8 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all duration-300 shadow-lg hover:scale-105 inline-flex items-center space-x-2">
+                                <span>Get In Touch</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-up">Skills &
-                Technologies</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <!-- JavaScript - Core Skill -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center skill-badge animate-on-scroll scale-in delay-100">
-                    <div class="text-4xl mb-3 pulse-animation">📘</div>
-                    <h3 class="font-semibold text-gray-800 mb-1">JavaScript</h3>
-                    <p class="text-xs text-gray-500">Proficient</p>
+    <section id="skills"
+        class="py-20 px-4 bg-gradient-to-b from-white via-purple-50/30 to-white relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
+                    Skills & <span
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Technologies</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Technologies I work with to bring ideas to life
+                </p>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JavaScript Card -->
+                <div class="skill-card-modern group animate-on-scroll fade-up delay-100">
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl">
+                        <!-- Icon Container -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                📘
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">Proficient</span>
+                        </div>
+
+                        <!-- Skill Info -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors">
+                            JavaScript</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Core programming language for web development</p>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-2">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-semibold text-gray-600">Expertise Level</span>
+                                <span class="text-xs font-bold text-yellow-600">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                                <div class="skill-progress bg-gradient-to-r from-yellow-400 to-yellow-600 h-2.5 rounded-full"
+                                    data-progress="90"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- HTML5 - Core Skill -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center skill-badge animate-on-scroll scale-in delay-200">
-                    <div class="text-4xl mb-3 pulse-animation">⚡</div>
-                    <h3 class="font-semibold text-gray-800 mb-1">HTML5</h3>
-                    <p class="text-xs text-gray-500">Proficient</p>
+                <!-- HTML5 Card -->
+                <div class="skill-card-modern group animate-on-scroll fade-up delay-200">
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-orange-300 transition-all duration-300 hover:shadow-2xl">
+                        <!-- Icon Container -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                ⚡
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-semibold">Proficient</span>
+                        </div>
+
+                        <!-- Skill Info -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition-colors">
+                            HTML5</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Semantic markup and modern web structure</p>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-2">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-semibold text-gray-600">Expertise Level</span>
+                                <span class="text-xs font-bold text-orange-600">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                                <div class="skill-progress bg-gradient-to-r from-orange-400 to-orange-600 h-2.5 rounded-full"
+                                    data-progress="95"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- CSS - Core Skill -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center skill-badge animate-on-scroll scale-in delay-300">
-                    <div class="text-4xl mb-3 pulse-animation">🎨</div>
-                    <h3 class="font-semibold text-gray-800 mb-1">CSS</h3>
-                    <p class="text-xs text-gray-500">Proficient</p>
+                <!-- CSS Card -->
+                <div class="skill-card-modern group animate-on-scroll fade-up delay-300">
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-blue-300 transition-all duration-300 hover:shadow-2xl">
+                        <!-- Icon Container -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                🎨
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">Proficient</span>
+                        </div>
+
+                        <!-- Skill Info -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                            CSS</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Styling and responsive design expertise</p>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-2">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-semibold text-gray-600">Expertise Level</span>
+                                <span class="text-xs font-bold text-blue-600">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                                <div class="skill-progress bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full"
+                                    data-progress="92"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Tailwind CSS - Core Skill -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center skill-badge animate-on-scroll scale-in delay-400">
-                    <div class="text-4xl mb-3 pulse-animation">💨</div>
-                    <h3 class="font-semibold text-gray-800 mb-1">Tailwind CSS</h3>
-                    <p class="text-xs text-gray-500">Proficient</p>
+                <!-- Tailwind CSS Card -->
+                <div class="skill-card-modern group animate-on-scroll fade-up delay-400">
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-cyan-300 transition-all duration-300 hover:shadow-2xl">
+                        <!-- Icon Container -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                💨
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs font-semibold">Proficient</span>
+                        </div>
+
+                        <!-- Skill Info -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-cyan-600 transition-colors">
+                            Tailwind CSS</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Utility-first CSS framework mastery</p>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-2">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-semibold text-gray-600">Expertise Level</span>
+                                <span class="text-xs font-bold text-cyan-600">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                                <div class="skill-progress bg-gradient-to-r from-cyan-400 to-cyan-600 h-2.5 rounded-full"
+                                    data-progress="88"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- React - Learning -->
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center skill-badge border-2 border-purple-300 animate-on-scroll scale-in delay-500">
-                    <div class="text-4xl mb-3 pulse-animation">⚛️</div>
-                    <h3 class="font-semibold text-gray-800 mb-1">React</h3>
-                    <p class="text-xs text-purple-600 font-semibold">Learning</p>
+                <!-- React Card -->
+                <div class="skill-card-modern group animate-on-scroll fade-up delay-500">
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-300 hover:border-purple-500 transition-all duration-300 hover:shadow-2xl relative overflow-hidden">
+                        <!-- Learning Badge -->
+                        <div class="absolute top-4 right-4">
+                            <span
+                                class="px-3 py-1 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full text-xs font-bold shadow-lg animate-pulse">
+                                Learning
+                            </span>
+                        </div>
+
+                        <!-- Icon Container -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-purple-400 via-purple-500 to-indigo-600 rounded-xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                ⚛️
+                            </div>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold">In
+                                Progress</span>
+                        </div>
+
+                        <!-- Skill Info -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors">
+                            React</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Component-based UI library (actively learning)</p>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-2">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-semibold text-gray-600">Learning Progress</span>
+                                <span class="text-xs font-bold text-purple-600">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                                <div class="skill-progress bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-600 h-2.5 rounded-full"
+                                    data-progress="45"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info Section -->
+            <div class="mt-16 text-center animate-on-scroll fade-up delay-600">
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-8 text-white shadow-2xl">
+                    <h3 class="text-2xl font-bold mb-4">Always Learning</h3>
+                    <p class="text-purple-100 max-w-2xl mx-auto">
+                        I'm constantly exploring new technologies and improving my skills. Currently focused on
+                        mastering React and expanding my frontend development expertise.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4 bg-white">
+    <section id="projects" class="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-up">Featured Projects
-            </h2>
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
+                    Featured <span
+                        class="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Projects</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Explore my latest work and creative solutions
+                </p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1 -->
-                <div
-                    class="project-card bg-white rounded-xl shadow-lg p-6 border border-gray-100 animate-on-scroll fade-up delay-100">
-                    <div
-                        class="w-full h-48 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mb-4 flex items-center justify-center text-white text-4xl transition-transform hover:scale-110">
-                        📱
+                <div class="project-card-modern group animate-on-scroll fade-up delay-100">
+                    <!-- Image Container with Overlay -->
+                    <div class="relative w-full h-56 rounded-t-2xl overflow-hidden mb-4">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                            📱
+                        </div>
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <a href="#"
+                                class="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-purple-600 px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-110">
+                                View Project
+                            </a>
+                        </div>
+                        <!-- Corner Badge -->
+                        <div
+                            class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-purple-600 shadow-lg">
+                            New
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Project 1</h3>
-                    <p class="text-gray-600 mb-4">
-                        A modern web application built with JavaScript and Tailwind CSS, featuring
-                        responsive design and smooth user interactions.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span
-                            class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm transition-transform hover:scale-110">JavaScript</span>
-                        <span
-                            class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm transition-transform hover:scale-110">Tailwind</span>
-                        <span
-                            class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm transition-transform hover:scale-110">HTML/CSS</span>
+
+                    <!-- Card Content -->
+                    <div class="bg-white rounded-b-2xl p-6 shadow-xl border border-gray-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-purple-600 transition-colors">
+                                Project 1</h3>
+                            <a href="#" class="text-gray-400 hover:text-purple-600 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="text-gray-600 mb-5 leading-relaxed">
+                            A modern web application built with JavaScript and Tailwind CSS, featuring
+                            responsive design and smooth user interactions.
+                        </p>
+                        <!-- Tech Stack -->
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 rounded-lg text-xs font-semibold border border-purple-200 hover:scale-110 transition-transform cursor-default">
+                                JavaScript
+                            </span>
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 rounded-lg text-xs font-semibold border border-purple-200 hover:scale-110 transition-transform cursor-default">
+                                Tailwind
+                            </span>
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 rounded-lg text-xs font-semibold border border-purple-200 hover:scale-110 transition-transform cursor-default">
+                                HTML/CSS
+                            </span>
+                        </div>
+                        <!-- Action Button -->
+                        <a href="#"
+                            class="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700 group/link transition-colors">
+                            <span class="mr-2">View Details</span>
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
                     </div>
-                    <a href="#"
-                        class="text-purple-600 font-semibold hover:underline inline-block transition-transform hover:translate-x-2">View
-                        Project →</a>
                 </div>
 
                 <!-- Project Card 2 -->
-                <div
-                    class="project-card bg-white rounded-xl shadow-lg p-6 border border-gray-100 animate-on-scroll fade-up delay-200">
-                    <div
-                        class="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mb-4 flex items-center justify-center text-white text-4xl transition-transform hover:scale-110">
-                        🎯
+                <div class="project-card-modern group animate-on-scroll fade-up delay-200">
+                    <!-- Image Container with Overlay -->
+                    <div class="relative w-full h-56 rounded-t-2xl overflow-hidden mb-4">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-700"></div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                            🎯
+                        </div>
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <a href="#"
+                                class="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-110">
+                                View Project
+                            </a>
+                        </div>
+                        <!-- Corner Badge -->
+                        <div
+                            class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-blue-600 shadow-lg">
+                            Featured
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Project 2</h3>
-                    <p class="text-gray-600 mb-4">
-                        An interactive web application with dynamic content and
-                        modern UI components built with vanilla JavaScript.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm transition-transform hover:scale-110">JavaScript</span>
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm transition-transform hover:scale-110">Tailwind</span>
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm transition-transform hover:scale-110">HTML5</span>
+
+                    <!-- Card Content -->
+                    <div class="bg-white rounded-b-2xl p-6 shadow-xl border border-gray-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                                Project 2</h3>
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="text-gray-600 mb-5 leading-relaxed">
+                            An interactive web application with dynamic content and
+                            modern UI components built with vanilla JavaScript.
+                        </p>
+                        <!-- Tech Stack -->
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-lg text-xs font-semibold border border-blue-200 hover:scale-110 transition-transform cursor-default">
+                                JavaScript
+                            </span>
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-lg text-xs font-semibold border border-blue-200 hover:scale-110 transition-transform cursor-default">
+                                Tailwind
+                            </span>
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-lg text-xs font-semibold border border-blue-200 hover:scale-110 transition-transform cursor-default">
+                                HTML5
+                            </span>
+                        </div>
+                        <!-- Action Button -->
+                        <a href="#"
+                            class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 group/link transition-colors">
+                            <span class="mr-2">View Details</span>
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
                     </div>
-                    <a href="#"
-                        class="text-purple-600 font-semibold hover:underline inline-block transition-transform hover:translate-x-2">View
-                        Project →</a>
                 </div>
 
                 <!-- Project Card 3 -->
-                <div
-                    class="project-card bg-white rounded-xl shadow-lg p-6 border border-gray-100 animate-on-scroll fade-up delay-300">
-                    <div
-                        class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center text-white text-4xl transition-transform hover:scale-110">
-                        🌐
+                <div class="project-card-modern group animate-on-scroll fade-up delay-300">
+                    <!-- Image Container with Overlay -->
+                    <div class="relative w-full h-56 rounded-t-2xl overflow-hidden mb-4">
+                        <img src="src/images/IMG_0067_converted.jpg" alt="Project 3" class="w-full h-full object-cover">
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        <!-- Hover Overlay -->
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                            <a href="#"
+                                class="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-green-600 px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-110">
+                                View Project
+                            </a>
+                        </div>
+                        <!-- Corner Badge -->
+                        <div
+                            class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-green-600 shadow-lg">
+                            Portfolio
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Project 3</h3>
-                    <p class="text-gray-600 mb-4">
-                        A responsive portfolio website showcasing projects and skills,
-                        built with modern CSS and JavaScript.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span
-                            class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm transition-transform hover:scale-110">JavaScript</span>
-                        <span
-                            class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm transition-transform hover:scale-110">CSS</span>
-                        <span
-                            class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm transition-transform hover:scale-110">HTML</span>
+
+                    <!-- Card Content -->
+                    <div class="bg-white rounded-b-2xl p-6 shadow-xl border border-gray-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors">
+                                Project 3</h3>
+                            <a href="#" class="text-gray-400 hover:text-green-600 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="text-gray-600 mb-5 leading-relaxed">
+                            A responsive portfolio website showcasing projects and skills,
+                            built with modern CSS and JavaScript.
+                        </p>
+                        <!-- Tech Stack -->
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-green-50 to-green-100 text-green-700 rounded-lg text-xs font-semibold border border-green-200 hover:scale-110 transition-transform cursor-default">
+                                JavaScript
+                            </span>
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-green-50 to-green-100 text-green-700 rounded-lg text-xs font-semibold border border-green-200 hover:scale-110 transition-transform cursor-default">
+                                CSS
+                            </span>
+                            <span
+                                class="px-3 py-1.5 bg-gradient-to-r from-green-50 to-green-100 text-green-700 rounded-lg text-xs font-semibold border border-green-200 hover:scale-110 transition-transform cursor-default">
+                                HTML
+                            </span>
+                        </div>
+                        <!-- Action Button -->
+                        <a href="#"
+                            class="inline-flex items-center text-green-600 font-semibold hover:text-green-700 group/link transition-colors">
+                            <span class="mr-2">View Details</span>
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
                     </div>
-                    <a href="#"
-                        class="text-purple-600 font-semibold hover:underline inline-block transition-transform hover:translate-x-2">View
-                        Project →</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 bg-gray-50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-up">Get In Touch</h2>
-            <div class="bg-white rounded-xl shadow-lg p-8 md:p-12 animate-on-scroll scale-in">
-                <p class="text-center text-gray-600 mb-8 text-lg animate-on-scroll fade-up delay-200">
-                    I'm always open to discussing new projects, creative ideas, or opportunities
-                    to be part of your visions.
+    <section id="contact"
+        class="py-20 px-4 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000">
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
+                    Get In <span
+                        class="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Touch</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
+                    visions.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div
-                        class="text-center p-6 bg-purple-50 rounded-lg transition-all hover:bg-purple-100 hover:scale-105 animate-on-scroll fade-up delay-100">
-                        <div class="text-3xl mb-3 pulse-animation">📧</div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Email</h3>
-                        <a href="mailto:your.email@example.com"
-                            class="text-purple-600 hover:underline transition-colors">
-                            your.email@example.com
-                        </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Information Cards -->
+                <div class="space-y-6">
+                    <div class="animate-on-scroll fade-left">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Let's Connect</h3>
+                        <p class="text-gray-600 mb-8">
+                            Feel free to reach out through any of these channels. I typically respond within 24 hours.
+                        </p>
                     </div>
-                    <div
-                        class="text-center p-6 bg-purple-50 rounded-lg transition-all hover:bg-purple-100 hover:scale-105 animate-on-scroll fade-up delay-200">
-                        <div class="text-3xl mb-3 pulse-animation">💼</div>
-                        <h3 class="font-semibold text-gray-800 mb-2">LinkedIn</h3>
-                        <a href="#" class="text-purple-600 hover:underline transition-colors">Connect with me</a>
+
+                    <!-- Contact Cards -->
+                    <div class="space-y-4">
+                        <!-- Email Card -->
+                        <div class="contact-card group animate-on-scroll fade-left delay-100">
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                                    <a href="mailto:your.email@example.com"
+                                        class="text-purple-600 hover:text-purple-700 transition-colors group-hover:underline">
+                                        your.email@example.com
+                                    </a>
+                                    <p class="text-sm text-gray-500 mt-1">Send me an email anytime</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LinkedIn Card -->
+                        <div class="contact-card group animate-on-scroll fade-left delay-200">
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-800 mb-1">LinkedIn</h4>
+                                    <a href="#"
+                                        class="text-blue-600 hover:text-blue-700 transition-colors group-hover:underline">
+                                        Connect with me
+                                    </a>
+                                    <p class="text-sm text-gray-500 mt-1">Let's network professionally</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GitHub Card -->
+                        <div class="contact-card group animate-on-scroll fade-left delay-300">
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-800 mb-1">GitHub</h4>
+                                    <a href="#"
+                                        class="text-gray-700 hover:text-gray-900 transition-colors group-hover:underline">
+                                        View my work
+                                    </a>
+                                    <p class="text-sm text-gray-500 mt-1">Check out my repositories</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div
-                        class="text-center p-6 bg-purple-50 rounded-lg transition-all hover:bg-purple-100 hover:scale-105 animate-on-scroll fade-up delay-300">
-                        <div class="text-3xl mb-3 pulse-animation">🐙</div>
-                        <h3 class="font-semibold text-gray-800 mb-2">GitHub</h3>
-                        <a href="#" class="text-purple-600 hover:underline transition-colors">View my work</a>
+
+                    <!-- Social Media Links -->
+                    <div class="pt-6 animate-on-scroll fade-left delay-400">
+                        <h4 class="font-semibold text-gray-800 mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="social-link w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center text-white shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="social-link w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center text-white shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="social-link w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center text-white shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
-                        <input type="text" id="name" name="name"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-                            placeholder="Your name">
+
+                <!-- Contact Form -->
+                <div class="animate-on-scroll fade-right">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Send a Message</h3>
+                        <form class="space-y-6" id="contact-form">
+                            <div class="form-group">
+                                <label for="name" class="block text-gray-700 font-semibold mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-purple-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                            </path>
+                                        </svg>
+                                        Your Name
+                                    </span>
+                                </label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all bg-gray-50 focus:bg-white"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-purple-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        Email Address
+                                    </span>
+                                </label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all bg-gray-50 focus:bg-white"
+                                    placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="block text-gray-700 font-semibold mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-purple-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                            </path>
+                                        </svg>
+                                        Message
+                                    </span>
+                                </label>
+                                <textarea id="message" name="message" rows="5"
+                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all resize-none bg-gray-50 focus:bg-white"
+                                    placeholder="Tell me about your project or just say hello!" required></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] flex items-center justify-center space-x-2">
+                                <span>Send Message</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
-                    <div>
-                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                        <input type="email" id="email" name="email"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-                            placeholder="your.email@example.com">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition resize-none"
-                            placeholder="Your message"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-purple-800 transition duration-300 shadow-lg">
-                        Send Message
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -683,6 +1596,31 @@
 
     <!-- Enhanced JavaScript with Animations -->
     <script>
+        // Image error handler - tries multiple formats and provides fallback
+        function handleImageError(img) {
+            // Try alternative formats
+            const originalSrc = img.src;
+            const basePath = originalSrc.replace(/\.(jpeg|jpg|png|heic|heif)$/i, '');
+            const formats = ['.jpg', '.jpeg', '.png', '.webp'];
+
+            let attempts = 0;
+            const maxAttempts = formats.length;
+
+            function tryNextFormat() {
+                if (attempts < maxAttempts) {
+                    img.src = basePath + formats[attempts];
+                    attempts++;
+                } else {
+                    // All formats failed, use fallback
+                    img.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Cdefs%3E%3ClinearGradient id=\'grad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23667eea;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23764ba2;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=\'url(%23grad)\' width=\'200\' height=\'200\'/%3E%3Ctext fill=\'white\' font-family=\'Arial\' font-size=\'80\' font-weight=\'bold\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EUC%3C/text%3E%3C/svg%3E';
+                    img.onerror = null; // Prevent infinite loop
+                }
+            }
+
+            img.onerror = tryNextFormat;
+            tryNextFormat();
+        }
+
         // Mobile menu toggle functionality
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -759,29 +1697,68 @@
             badge.style.animationDelay = `${index * 0.1}s`;
         });
 
+        // Animate skill progress bars when they come into view
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target;
+                    const progress = progressBar.getAttribute('data-progress');
+
+                    // Set the width and add animated class
+                    progressBar.style.setProperty('--progress-width', `${progress}%`);
+                    progressBar.classList.add('animated');
+
+                    // Stop observing once animated
+                    progressObserver.unobserve(progressBar);
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '0px'
+        });
+
+        // Observe all progress bars
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.skill-progress');
+            progressBars.forEach(bar => {
+                progressObserver.observe(bar);
+            });
+        });
+
         // Form submission handler with animation
-        const form = document.querySelector('form');
+        const form = document.getElementById('contact-form');
         if (form) {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 // Add success animation
                 const button = this.querySelector('button[type="submit"]');
-                const originalText = button.textContent;
-                button.textContent = 'Sending...';
+                const originalText = button.innerHTML;
+                button.innerHTML = '<span>Sending...</span>';
                 button.disabled = true;
+                button.style.opacity = '0.8';
 
                 // Simulate form submission
                 setTimeout(() => {
-                    button.textContent = 'Message Sent! ✓';
+                    button.innerHTML = '<span>Message Sent! ✓</span>';
                     button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                    button.style.opacity = '1';
 
                     setTimeout(() => {
-                        alert('Thank you for your message! I will get back to you soon.');
+                        // Show success message
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl z-50 animate-on-scroll fade-up';
+                        successMsg.innerHTML = '<div class="flex items-center space-x-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Thank you! I\'ll get back to you soon.</span></div>';
+                        document.body.appendChild(successMsg);
+
                         this.reset();
-                        button.textContent = originalText;
+                        button.innerHTML = originalText;
                         button.style.background = '';
                         button.disabled = false;
+
+                        setTimeout(() => {
+                            successMsg.remove();
+                        }, 3000);
                     }, 1000);
                 }, 1500);
             });
@@ -870,165 +1847,378 @@
 
     <!-- AI Live Chat Widget -->
     <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
-        <!-- Chat Button -->
+        <!-- Chat Button with Notification Badge -->
         <button id="chat-toggle"
-            class="bg-gradient-to-r from-purple-600 to-purple-700 text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center pulse-animation">
-            <svg id="chat-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            class="relative bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-700 text-white w-16 h-16 rounded-full shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center group">
+            <!-- Pulse ring animation -->
+            <div class="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-75"></div>
+            <div class="absolute inset-0 rounded-full bg-purple-500 animate-pulse"></div>
+
+            <!-- Chat Icon -->
+            <svg id="chat-icon" class="w-6 h-6 relative z-10 transform group-hover:rotate-12 transition-transform"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
                 </path>
             </svg>
-            <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Close Icon -->
+            <svg id="close-icon" class="w-6 h-6 hidden relative z-10" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
+
+            <!-- Notification Badge -->
+            <span
+                class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold animate-bounce">1</span>
         </button>
 
-        <!-- Chat Window -->
+        <!-- Chat Window with Glassmorphism -->
         <div id="chat-window"
-            class="hidden absolute bottom-20 right-0 w-80 h-96 bg-white rounded-lg shadow-2xl flex flex-col border border-gray-200 animate-on-scroll scale-in">
-            <!-- Chat Header -->
+            class="hidden absolute bottom-24 right-0 w-96 h-[500px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl flex flex-col border border-white/20 overflow-hidden chat-window-modern">
+            <!-- Chat Header with Gradient -->
             <div
-                class="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-4 rounded-t-lg flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <h3 class="font-semibold">AI Assistant</h3>
+                class="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700 text-white p-5 flex items-center justify-between shadow-lg">
+                <div class="flex items-center space-x-3">
+                    <!-- AI Avatar with Animation -->
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold border-2 border-white/30">
+                            AI
+                        </div>
+                        <div
+                            class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse">
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">AI Assistant</h3>
+                        <p class="text-xs text-purple-100">Online • Usually replies instantly</p>
+                    </div>
                 </div>
-                <button id="minimize-chat" class="text-white hover:text-gray-200 transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                    </svg>
-                </button>
+                <div class="flex items-center space-x-1">
+                    <!-- Clear Chat Button -->
+                    <button id="clear-chat" title="Clear chat history"
+                        class="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Settings Button -->
+                    <button id="chat-settings" title="Settings"
+                        class="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </button>
+                    <!-- Minimize Button -->
+                    <button id="minimize-chat" title="Minimize"
+                        class="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div id="quick-actions"
+                class="px-4 pt-3 pb-2 bg-gradient-to-b from-purple-50 to-transparent border-b border-gray-100">
+                <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                    <button
+                        class="quick-action-btn px-3 py-1.5 bg-white text-purple-600 rounded-full text-xs font-semibold whitespace-nowrap border border-purple-200 hover:bg-purple-50 transition-all hover:scale-105">
+                        💼 Skills
+                    </button>
+                    <button
+                        class="quick-action-btn px-3 py-1.5 bg-white text-purple-600 rounded-full text-xs font-semibold whitespace-nowrap border border-purple-200 hover:bg-purple-50 transition-all hover:scale-105">
+                        🚀 Projects
+                    </button>
+                    <button
+                        class="quick-action-btn px-3 py-1.5 bg-white text-purple-600 rounded-full text-xs font-semibold whitespace-nowrap border border-purple-200 hover:bg-purple-50 transition-all hover:scale-105">
+                        📧 Contact
+                    </button>
+                    <button
+                        class="quick-action-btn px-3 py-1.5 bg-white text-purple-600 rounded-full text-xs font-semibold whitespace-nowrap border border-purple-200 hover:bg-purple-50 transition-all hover:scale-105">
+                        👤 About
+                    </button>
+                </div>
             </div>
 
             <!-- Chat Messages -->
-            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-                <div class="flex items-start space-x-2">
-                    <div
-                        class="w-8 h-8 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                        AI
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-b from-gray-50 to-white">
+                <!-- Welcome Message -->
+                <div class="flex items-start space-x-3 animate-message-in">
+                    <div class="flex-shrink-0">
+                        <div
+                            class="w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                            AI
+                        </div>
                     </div>
-                    <div class="bg-white rounded-lg p-3 shadow-sm max-w-[80%]">
-                        <p class="text-sm text-gray-700">Hi! I'm your AI assistant. Ask me anything about this
-                            portfolio, skills, projects, or how to get in touch! 😊</p>
+                    <div class="flex-1">
+                        <div
+                            class="bg-white rounded-2xl rounded-tl-sm p-4 shadow-md border border-gray-100 max-w-[85%]">
+                            <p class="text-sm text-gray-700 leading-relaxed">
+                                👋 Hi! I'm your AI assistant. I can help you learn about this portfolio, skills,
+                                projects, or how to get in touch!
+                            </p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1 ml-1">Just now</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Chat Input -->
-            <div class="p-4 border-t border-gray-200 bg-white rounded-b-lg">
-                <div class="flex space-x-2">
-                    <input type="text" id="chat-input" placeholder="Type your message..."
-                        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none text-sm"
-                        autocomplete="off">
+            <!-- Chat Input Area -->
+            <div class="p-4 bg-white border-t border-gray-200">
+                <!-- Suggested Questions -->
+                <div id="suggested-questions" class="mb-3 flex flex-wrap gap-2">
+                    <button
+                        class="suggested-question px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-xs font-medium hover:bg-purple-100 transition-all hover:scale-105 border border-purple-200">
+                        What are your skills?
+                    </button>
+                    <button
+                        class="suggested-question px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-xs font-medium hover:bg-purple-100 transition-all hover:scale-105 border border-purple-200">
+                        Tell me about projects
+                    </button>
+                </div>
+
+                <!-- Input Field -->
+                <div class="flex items-end space-x-2">
+                    <!-- Voice Input Button -->
+                    <button id="voice-input" title="Voice input"
+                        class="bg-gray-100 hover:bg-purple-100 text-gray-600 hover:text-purple-600 p-3 rounded-xl transition-all duration-300 hover:scale-105">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <div class="flex-1 relative">
+                        <input type="text" id="chat-input" placeholder="Type your message..."
+                            class="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none text-sm bg-gray-50 focus:bg-white transition-all"
+                            autocomplete="off">
+                        <!-- Emoji Button -->
+                        <button id="emoji-btn" title="Add emoji"
+                            class="absolute right-2 bottom-2.5 text-gray-400 hover:text-purple-600 transition-colors p-1 hover:bg-purple-50 rounded">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                     <button id="send-message"
-                        class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-purple-800 transition duration-300 flex items-center justify-center">
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-5 py-3 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                         </svg>
                     </button>
                 </div>
-                <p class="text-xs text-gray-500 mt-2 text-center">Try: "What are your skills?" or "Tell me about your
-                    projects"</p>
+
+                <!-- Voice Status Indicator -->
+                <div id="voice-status" class="hidden mt-2 text-center">
+                    <div
+                        class="inline-flex items-center space-x-2 px-3 py-1.5 bg-red-50 text-red-600 rounded-full text-xs font-medium">
+                        <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                        <span>Listening...</span>
+                        <button id="stop-voice" class="ml-2 hover:text-red-700">Stop</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emoji Picker (Hidden by default) -->
+            <div id="emoji-picker"
+                class="hidden absolute bottom-full left-0 right-0 mb-2 bg-white border border-gray-200 rounded-xl shadow-2xl p-4 max-h-48 overflow-y-auto z-50">
+                <div class="grid grid-cols-8 gap-2">
+                    <!-- Common emojis -->
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">😊</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">👍</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">❤️</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">🎉</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">🔥</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">💯</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">✨</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">🚀</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">👏</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">😄</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">💡</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">⭐</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">🎯</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">💪</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">🙌</button>
+                    <button class="emoji-option text-2xl hover:bg-purple-50 rounded p-1 transition-colors">😎</button>
+                </div>
+            </div>
+
+            <!-- Settings Panel (Hidden by default) -->
+            <div id="settings-panel" class="hidden absolute inset-0 bg-white z-50 flex flex-col">
+                <div
+                    class="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700 text-white p-5 flex items-center justify-between">
+                    <h3 class="font-bold text-lg">Settings</h3>
+                    <button id="close-settings"
+                        class="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-5 space-y-4">
+                    <div>
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-gray-700 font-medium">Dark Mode</span>
+                            <input type="checkbox" id="dark-mode-toggle" class="toggle-switch">
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-gray-700 font-medium">Sound Notifications</span>
+                            <input type="checkbox" id="sound-toggle" class="toggle-switch" checked>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center justify-between cursor-pointer">
+                            <span class="text-gray-700 font-medium">Auto-scroll</span>
+                            <input type="checkbox" id="autoscroll-toggle" class="toggle-switch" checked>
+                        </label>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <button id="export-chat"
+                            class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                            Export Chat History
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Chat Widget Styles -->
+    <!-- Modern Chat Widget Styles -->
     <style>
-        /* Chat widget animations */
-        #chat-window {
-            animation: slideUp 0.3s ease-out;
+        /* Chat window entrance animation */
+        .chat-window-modern {
+            animation: slideUpScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes slideUp {
+        @keyframes slideUpScale {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px) scale(0.9);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
+        /* Message animations */
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-message-in {
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        /* User message styling */
         .message-user {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 1rem;
+            animation: messageSlide 0.3s ease-out;
         }
 
         .message-user .message-content {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-radius: 1rem 1rem 0.25rem 1rem;
-            padding: 0.75rem 1rem;
-            max-width: 80%;
-            animation: messageSlide 0.3s ease-out;
+            border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
+            padding: 0.875rem 1.125rem;
+            max-width: 85%;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            word-wrap: break-word;
         }
 
+        /* AI message styling */
         .message-ai {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 1rem;
+            animation: messageSlide 0.3s ease-out;
         }
 
         .message-ai .message-content {
             background: white;
             color: #374151;
-            border-radius: 1rem 1rem 1rem 0.25rem;
-            padding: 0.75rem 1rem;
-            max-width: 80%;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            animation: messageSlide 0.3s ease-out;
+            border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
+            padding: 0.875rem 1.125rem;
+            max-width: 85%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f3f4f6;
+            word-wrap: break-word;
         }
 
-        @keyframes messageSlide {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scrollbar styling for chat messages */
+        /* Modern scrollbar styling */
         #chat-messages::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         #chat-messages::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: transparent;
             border-radius: 10px;
         }
 
         #chat-messages::-webkit-scrollbar-thumb {
-            background: #888;
+            background: linear-gradient(180deg, #a78bfa, #8b5cf6);
             border-radius: 10px;
         }
 
         #chat-messages::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: linear-gradient(180deg, #9333ea, #7c3aed);
         }
 
-        /* Typing indicator */
+        /* Hide scrollbar for quick actions */
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Typing indicator with modern design */
         .typing-indicator {
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 0.75rem 1rem;
+            gap: 5px;
+            padding: 1rem;
+            background: white;
+            border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
+            max-width: 85%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f3f4f6;
         }
 
         .typing-indicator span {
-            width: 8px;
-            height: 8px;
-            background: #9ca3af;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
             border-radius: 50%;
-            animation: typing 1.4s infinite;
+            animation: typingBounce 1.4s infinite;
         }
 
         .typing-indicator span:nth-child(2) {
@@ -1039,16 +2229,168 @@
             animation-delay: 0.4s;
         }
 
-        @keyframes typing {
+        @keyframes typingBounce {
 
             0%,
             60%,
             100% {
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
             }
 
             30% {
-                transform: translateY(-10px);
+                transform: translateY(-12px) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Quick action buttons hover effect */
+        .quick-action-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Suggested question buttons */
+        .suggested-question:active {
+            transform: scale(0.95);
+        }
+
+        /* Input focus effect */
+        #chat-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        /* Send button pulse on new message */
+        @keyframes pulse-send {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(102, 126, 234, 0);
+            }
+        }
+
+        .pulse-send {
+            animation: pulse-send 1.5s infinite;
+        }
+
+        /* Notification badge animation */
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Copy button for messages */
+        .copy-btn {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .message-ai:hover .copy-btn,
+        .message-user:hover .copy-btn {
+            opacity: 1;
+        }
+
+        /* Toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            appearance: none;
+            background: #cbd5e1;
+            border-radius: 12px;
+            outline: none;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .toggle-switch:checked {
+            background: #8b5cf6;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            background: white;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch:checked::before {
+            transform: translateX(24px);
+        }
+
+        /* Voice input animation */
+        @keyframes voice-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        #voice-input.recording {
+            animation: voice-pulse 1s infinite;
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* Message copy notification */
+        .copy-notification {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 640px) {
+            #chat-window {
+                width: calc(100vw - 2rem);
+                right: 1rem;
+                height: 85vh;
+                max-height: 600px;
             }
         }
     </style>
@@ -1073,6 +2415,19 @@
             chatWindow.classList.toggle('hidden');
             chatIcon.classList.toggle('hidden');
             closeIcon.classList.toggle('hidden');
+
+            // Hide notification badge when chat opens
+            if (isChatOpen) {
+                const badge = chatToggle.querySelector('span');
+                if (badge) badge.style.display = 'none';
+            }
+
+            // Auto-focus input when chat opens
+            if (isChatOpen) {
+                setTimeout(() => {
+                    chatInput.focus();
+                }, 300);
+            }
         });
 
         // Minimize chat
@@ -1186,28 +2541,96 @@
         function addMessage(text, isUser = false) {
             const messageDiv = document.createElement('div');
             messageDiv.className = isUser ? 'message-user' : 'message-ai';
+            messageDiv.classList.add('animate-message-in');
 
             if (isUser) {
                 messageDiv.innerHTML = `
                     <div class="message-content">
-                        <p class="text-sm">${text}</p>
+                        <p class="text-sm leading-relaxed">${text}</p>
                     </div>
                 `;
             } else {
                 messageDiv.innerHTML = `
-                    <div class="flex items-start space-x-2">
-                        <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                            AI
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0">
+                            <div class="w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                                AI
+                            </div>
                         </div>
-                        <div class="message-content">
-                            <p class="text-sm whitespace-pre-line">${text}</p>
+                        <div class="flex-1">
+                            <div class="message-content">
+                                <p class="text-sm text-gray-700 leading-relaxed whitespace-pre-line">${text}</p>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1 ml-1">Just now</p>
                         </div>
                     </div>
                 `;
             }
 
             chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Add copy button to message
+            setTimeout(() => {
+                const messageContent = messageDiv.querySelector('.message-content');
+                if (messageContent) {
+                    addCopyButton(messageDiv, text);
+                }
+            }, 100);
+
+            // Auto-scroll if enabled
+            const autoscrollEnabled = document.getElementById('autoscroll-toggle')?.checked !== false;
+            if (autoscrollEnabled) {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Hide suggested questions after first user message
+            if (isUser) {
+                const suggestedQuestions = document.getElementById('suggested-questions');
+                if (suggestedQuestions) {
+                    suggestedQuestions.style.display = 'none';
+                }
+            }
+        }
+
+        // Copy button function
+        function addCopyButton(messageElement, messageText) {
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn absolute top-2 right-2 p-1.5 bg-white/80 hover:bg-white rounded-lg shadow-sm transition-all z-10';
+            copyBtn.innerHTML = `
+                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+            `;
+            copyBtn.title = 'Copy message';
+            copyBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(messageText).then(() => {
+                    showNotification('Message copied!');
+                }).catch(() => {
+                    showNotification('Failed to copy message');
+                });
+            });
+
+            const messageContent = messageElement.querySelector('.message-content');
+            if (messageContent) {
+                messageContent.style.position = 'relative';
+                messageContent.appendChild(copyBtn);
+            }
+        }
+
+        // Notification function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'copy-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease-out reverse';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 2000);
         }
 
         // Show typing indicator
@@ -1216,11 +2639,13 @@
             typingDiv.className = 'message-ai';
             typingDiv.id = 'typing-indicator';
             typingDiv.innerHTML = `
-                <div class="flex items-start space-x-2">
-                    <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                        AI
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0">
+                        <div class="w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                            AI
+                        </div>
                     </div>
-                    <div class="message-content">
+                    <div class="flex-1">
                         <div class="typing-indicator">
                             <span></span>
                             <span></span>
@@ -1248,6 +2673,7 @@
 
             // Add user message
             addMessage(message, true);
+            saveToHistory(message, true);
             chatInput.value = '';
 
             // Show typing indicator
@@ -1258,26 +2684,324 @@
                 removeTypingIndicator();
                 const response = generateAIResponse(message);
                 addMessage(response, false);
+                saveToHistory(response, false);
+
+                // Play sound notification if enabled
+                const soundEnabled = document.getElementById('sound-toggle')?.checked !== false;
+                if (soundEnabled) {
+                    playNotificationSound();
+                }
             }, 800 + Math.random() * 500); // Random delay between 800-1300ms
         }
+
+        // Quick action buttons
+        document.querySelectorAll('.quick-action-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.textContent.trim();
+                let question = '';
+
+                if (text.includes('Skills')) {
+                    question = 'What are your skills?';
+                } else if (text.includes('Projects')) {
+                    question = 'Tell me about your projects';
+                } else if (text.includes('Contact')) {
+                    question = 'How can I contact you?';
+                } else if (text.includes('About')) {
+                    question = 'Tell me about yourself';
+                }
+
+                if (question) {
+                    chatInput.value = question;
+                    sendMessage();
+                }
+            });
+        });
+
+        // Suggested question buttons
+        document.querySelectorAll('.suggested-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.textContent.trim();
+                chatInput.value = question;
+                sendMessage();
+            });
+        });
 
         // Event listeners
         sendButton.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
                 sendMessage();
             }
         });
 
-        // Auto-focus input when chat opens
-        chatToggle.addEventListener('click', () => {
-            if (isChatOpen) {
-                setTimeout(() => {
-                    chatInput.focus();
-                }, 100);
+        // Disable send button when input is empty
+        chatInput.addEventListener('input', () => {
+            sendButton.disabled = !chatInput.value.trim();
+        });
+
+        // ========== NEW FEATURES ==========
+
+        // Chat History Storage
+        let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+
+        // Save message to history
+        function saveToHistory(message, isUser) {
+            chatHistory.push({
+                text: message,
+                isUser: isUser,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+        }
+
+        // Load chat history
+        function loadChatHistory() {
+            if (chatHistory.length > 0) {
+                chatMessages.innerHTML = '';
+                chatHistory.forEach(msg => {
+                    addMessage(msg.text, msg.isUser);
+                    // Don't save to history again since it's already saved
+                });
+            }
+        }
+
+        // Clear Chat Functionality
+        const clearChatBtn = document.getElementById('clear-chat');
+        clearChatBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear the chat history?')) {
+                chatMessages.innerHTML = '';
+                chatHistory = [];
+                localStorage.removeItem('chatHistory');
+                // Add welcome message back
+                addMessage("Hi! I'm your AI assistant. I can help you learn about this portfolio, skills, projects, or how to get in touch! 👋", false, false);
+            }
+        });
+
+        // Settings Panel
+        const settingsBtn = document.getElementById('chat-settings');
+        const settingsPanel = document.getElementById('settings-panel');
+        const closeSettings = document.getElementById('close-settings');
+
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.remove('hidden');
+        });
+
+        closeSettings.addEventListener('click', () => {
+            settingsPanel.classList.add('hidden');
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                chatWindow.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            } else {
+                chatWindow.classList.remove('dark-mode');
+                document.body.classList.remove('dark-mode');
+            }
+            localStorage.setItem('darkMode', e.target.checked);
+        });
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            darkModeToggle.checked = true;
+            chatWindow.classList.add('dark-mode');
+        }
+
+        // Export Chat History
+        const exportChatBtn = document.getElementById('export-chat');
+        exportChatBtn.addEventListener('click', () => {
+            if (chatHistory.length === 0) {
+                alert('No chat history to export!');
+                return;
+            }
+
+            let exportText = 'Chat History Export\n';
+            exportText += '='.repeat(50) + '\n\n';
+
+            chatHistory.forEach((msg, index) => {
+                const date = new Date(msg.timestamp);
+                exportText += `[${date.toLocaleString()}] ${msg.isUser ? 'You' : 'AI'}: ${msg.text}\n\n`;
+            });
+
+            // Create download link
+            const blob = new Blob([exportText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `chat-history-${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showNotification('Chat history exported successfully!');
+        });
+
+        // Emoji Picker
+        const emojiBtn = document.getElementById('emoji-btn');
+        const emojiPicker = document.getElementById('emoji-picker');
+        let emojiPickerOpen = false;
+
+        emojiBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            emojiPickerOpen = !emojiPickerOpen;
+            emojiPicker.classList.toggle('hidden');
+        });
+
+        // Close emoji picker when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!emojiPicker.contains(e.target) && e.target !== emojiBtn) {
+                emojiPicker.classList.add('hidden');
+                emojiPickerOpen = false;
+            }
+        });
+
+        // Emoji selection
+        document.querySelectorAll('.emoji-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const emoji = btn.textContent;
+                chatInput.value += emoji;
+                chatInput.focus();
+                emojiPicker.classList.add('hidden');
+                emojiPickerOpen = false;
+            });
+        });
+
+        // Voice Input (Web Speech API)
+        const voiceInputBtn = document.getElementById('voice-input');
+        const voiceStatus = document.getElementById('voice-status');
+        const stopVoiceBtn = document.getElementById('stop-voice');
+        let recognition = null;
+        let isListening = false;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                chatInput.value = transcript;
+                voiceInputBtn.classList.remove('recording');
+                voiceStatus.classList.add('hidden');
+                isListening = false;
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                voiceInputBtn.classList.remove('recording');
+                voiceStatus.classList.add('hidden');
+                isListening = false;
+                showNotification('Voice input error. Please try again.');
+            };
+
+            recognition.onend = () => {
+                voiceInputBtn.classList.remove('recording');
+                voiceStatus.classList.add('hidden');
+                isListening = false;
+            };
+
+            voiceInputBtn.addEventListener('click', () => {
+                if (!isListening) {
+                    try {
+                        recognition.start();
+                        voiceInputBtn.classList.add('recording');
+                        voiceStatus.classList.remove('hidden');
+                        isListening = true;
+                    } catch (error) {
+                        showNotification('Voice input not available. Please use your keyboard.');
+                    }
+                }
+            });
+
+            stopVoiceBtn.addEventListener('click', () => {
+                if (isListening && recognition) {
+                    recognition.stop();
+                    voiceInputBtn.classList.remove('recording');
+                    voiceStatus.classList.add('hidden');
+                    isListening = false;
+                }
+            });
+        } else {
+            voiceInputBtn.style.display = 'none';
+        }
+
+
+        // Sound notification
+        const soundToggle = document.getElementById('sound-toggle');
+        let soundEnabled = soundToggle.checked;
+
+        soundToggle.addEventListener('change', (e) => {
+            soundEnabled = e.target.checked;
+            localStorage.setItem('soundEnabled', e.target.checked);
+        });
+
+        // Load sound preference
+        if (localStorage.getItem('soundEnabled') === 'false') {
+            soundToggle.checked = false;
+            soundEnabled = false;
+        }
+
+        function playNotificationSound() {
+            if (soundEnabled) {
+                // Create a simple beep sound
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            }
+        }
+
+
+        // Auto-scroll toggle
+        const autoscrollToggle = document.getElementById('autoscroll-toggle');
+        let autoscrollEnabled = autoscrollToggle.checked;
+
+        autoscrollToggle.addEventListener('change', (e) => {
+            autoscrollEnabled = e.target.checked;
+            localStorage.setItem('autoscrollEnabled', e.target.checked);
+        });
+
+        // Load autoscroll preference
+        if (localStorage.getItem('autoscrollEnabled') === 'false') {
+            autoscrollToggle.checked = false;
+            autoscrollEnabled = false;
+        }
+
+        // Update scroll behavior
+        const originalScroll = () => {
+            if (autoscrollEnabled) {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        };
+
+        // Load chat history on page load
+        window.addEventListener('load', () => {
+            if (chatHistory.length > 0) {
+                loadChatHistory();
+            } else {
+                // Welcome message is already in HTML, no need to add again
             }
         });
     </script>
 </body>
+
+</html>
 
 </html>
