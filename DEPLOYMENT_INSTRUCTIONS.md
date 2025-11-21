@@ -141,3 +141,4 @@ Before deploying:
 - [ ] robots.txt accessible
 - [ ] Structured data validated (use Google Rich Results Test)
 
+

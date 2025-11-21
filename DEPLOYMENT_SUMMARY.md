@@ -100,3 +100,4 @@
 
 Your portfolio is **85% ready** for deployment! Just need to update the placeholders and set up the form. 🎉
 
+
