@@ -972,6 +972,25 @@
                                 class="w-1 h-8 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-full mr-3"></span>
                             Beyond Coding
                         </h3>
+                        <!-- Hobbies/Interests Image Gallery -->
+                        <div class="mb-6 grid grid-cols-2 gap-3">
+                            <div class="rounded-xl overflow-hidden shadow-md">
+                                <img src="src/images/hobby-1.jpg" alt="Hobby 1" 
+                                    class="w-full h-32 object-cover" 
+                                    onerror="handleImageError(this)"
+                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            </div>
+                            <div class="rounded-xl overflow-hidden shadow-md">
+                                <img src="src/images/hobby-2.jpg" alt="Hobby 2" 
+                                    class="w-full h-32 object-cover" 
+                                    onerror="handleImageError(this)"
+                                    style="background: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);">
+                            </div>
+                        </div>
+                        <!-- Image Suggestions: 
+                            hobby-1.jpg - Tech meetup, conference, or learning activity
+                            hobby-2.jpg - Open source contribution, community event, or creative activity
+                        -->
                         <p class="text-gray-600 mb-6">
                             When I'm not coding, you can find me:
                         </p>
@@ -1051,9 +1070,15 @@
                 <!-- JavaScript Card -->
                 <div class="skill-card-modern group animate-on-scroll fade-up delay-100">
                     <div
-                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl">
+                        class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl relative overflow-hidden">
+                        <!-- Background Image -->
+                        <div class="absolute top-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <img src="src/images/skill-javascript.jpg" alt="JavaScript" 
+                                class="w-full h-full object-cover rounded-lg" 
+                                onerror="this.style.display='none'">
+                        </div>
                         <!-- Icon Container -->
-                        <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center justify-between mb-6 relative z-10">
                             <div
                                 class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                                 📘
@@ -1614,8 +1639,15 @@
 
                 <!-- Contact Form -->
                 <div class="animate-on-scroll fade-right">
-                    <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border border-gray-100">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Send a Message</h3>
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border border-gray-100 relative overflow-hidden">
+                        <!-- Background Decorative Image -->
+                        <div class="absolute top-0 right-0 w-64 h-64 opacity-5 pointer-events-none">
+                            <img src="src/images/contact-bg.jpg" alt="Contact background" 
+                                class="w-full h-full object-cover rounded-full" 
+                                onerror="this.style.display='none'">
+                        </div>
+                        <!-- Image Suggestion: contact-bg.jpg - Abstract design, workspace, or communication-themed image -->
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 relative z-10">Send a Message</h3>
                         <form class="space-y-6" id="contact-form">
                             <div class="form-group">
                                 <label for="name" class="block text-gray-700 font-semibold mb-2">
