@@ -5,18 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubaoha Chinemerem - Portfolio</title>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="src/icon.svg">
+    <link rel="apple-touch-icon" href="src/icon.svg">
+    <link rel="manifest" href="src/manifest.json">
+
+    <!-- Performance: Preconnect to CDN for faster loading -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons - Professional Icon Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Smooth scrolling disabled to prevent unwanted page movement */
         html {
             scroll-behavior: auto;
         }
 
-        /* Animated gradient background with multiple colors */
+        /* Animated gradient background - Optimized for performance */
         .gradient-bg {
             background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe, #667eea);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
+            will-change: background-position;
+            transform: translateZ(0);
+            /* Force GPU acceleration */
+            backface-visibility: hidden;
+            /* Prevent flickering */
+            -webkit-backface-visibility: hidden;
         }
 
         @keyframes gradientShift {
@@ -64,8 +82,8 @@
         }
 
         .typing-cursor {
-            animation: typing 1s infinite;
-            margin-left: 2px;
+            display: none;
+            /* Hidden since we're using ::after pseudo-element */
         }
 
         /* Gradient text animation */
@@ -86,20 +104,69 @@
             animation: gradient 3s ease infinite;
         }
 
-        /* Typing text animation */
+        /* Typing text animation - Enhanced styling with glassmorphism - Optimized */
         .typing-text {
             position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            padding: 0.75rem 1.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            min-width: 300px;
+            text-align: center;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 0.5px;
+            will-change: transform;
+            transform: translateZ(0);
+            /* GPU acceleration */
+        }
+
+        .typing-text:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .typing-text::after {
             content: '';
             position: absolute;
-            right: -8px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: currentColor;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%) translateZ(0);
+            width: 4px;
+            height: 65%;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+            border-radius: 3px;
             animation: typing 1s infinite;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9),
+                0 0 6px rgba(255, 255, 255, 0.6);
+            will-change: opacity;
+        }
+
+        /* Responsive adjustments for typing text */
+        @media (max-width: 768px) {
+            .typing-text {
+                min-width: 250px;
+                padding: 0.6rem 1.2rem;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .typing-text {
+                min-width: 200px;
+                padding: 0.5rem 1rem;
+                font-size: 1.25rem;
+            }
         }
 
         /* Fade in animation */
@@ -338,6 +405,35 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
+        /* Active navigation link styling with shadow */
+        .nav-link.active {
+            color: #9333ea !important;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3),
+                0 2px 4px rgba(147, 51, 234, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        .nav-link.active span.relative.z-10 {
+            position: relative;
+            z-index: 10;
+        }
+
         /* Modern button animations */
         .btn-primary {
             position: relative;
@@ -481,10 +577,37 @@
         }
 
         .animate-blob {
-            /* animation: blob 7s infinite; */
-            /* Disabled to prevent any movement */
             animation: none;
-            /* No animation */
+            /* No animation - disabled for performance */
+        }
+
+        /* Performance optimizations - CSS containment for better rendering */
+        section {
+            contain: layout style paint;
+        }
+
+        /* Optimize image rendering */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* GPU acceleration for animated elements */
+        .gradient-bg,
+        .particles,
+        .typing-text {
+            will-change: transform, background-position, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* Reduce repaints on cards */
+        .project-card-modern,
+        .skill-card-modern,
+        .contact-card {
+            contain: layout style paint;
         }
 
         .animation-delay-2000 {
@@ -576,20 +699,77 @@
 </head>
 
 <body class="bg-gray-50 font-sans antialiased">
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full bg-white shadow-md z-50" id="navbar">
+    <!-- Navigation Bar - Enhanced & Modern -->
+    <nav class="fixed top-0 w-full bg-white/98 backdrop-blur-xl shadow-xl z-50 border-b border-gray-200/50 transition-all duration-300"
+        id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="text-xl font-bold text-purple-600 fade-in">UC</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-purple-600">Home</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-purple-600">About</a>
-                    <a href="#skills" class="nav-link text-gray-700 hover:text-purple-600">Skills</a>
-                    <a href="#projects" class="nav-link text-gray-700 hover:text-purple-600">Projects</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-purple-600">Contact</a>
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Brand -->
+                <a href="#home" class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="relative">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-purple-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300 overflow-hidden p-1">
+                            <img src="src/icon.svg" alt="UC Logo" class="w-full h-full object-contain"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <span class="text-white font-extrabold text-xl hidden items-center justify-center">UC</span>
+                        </div>
+                        <div
+                            class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse">
+                        </div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div
+                            class="text-base font-extrabold text-gray-900 group-hover:text-purple-600 transition-colors">
+                            Ubaoha Chinemerem</div>
+                        <div class="text-xs font-semibold text-purple-600">Full-Stack Developer</div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="#home"
+                        class="nav-link px-5 py-2.5 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-all duration-300 font-semibold text-sm relative group">
+                        <span class="relative z-10">Home</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#services"
+                        class="nav-link px-5 py-2.5 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-all duration-300 font-semibold text-sm relative group">
+                        <span class="relative z-10">Services</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#projects"
+                        class="nav-link px-5 py-2.5 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-all duration-300 font-semibold text-sm relative group">
+                        <span class="relative z-10">Portfolio</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#testimonials"
+                        class="nav-link px-5 py-2.5 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-all duration-300 font-semibold text-sm relative group">
+                        <span class="relative z-10">Reviews</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#contact"
+                        class="ml-2 px-6 py-2.5 bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:via-indigo-700 hover:to-purple-800 transition-all duration-300 font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center space-x-2 relative overflow-hidden group">
+                        <span class="relative z-10 flex items-center space-x-2">
+                            <span>Get Quote</span>
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </span>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity">
+                        </div>
+                    </a>
                 </div>
+
                 <!-- Mobile menu button -->
-                <button class="md:hidden text-gray-700 transition-transform hover:scale-110" id="mobile-menu-btn">
+                <button
+                    class="md:hidden p-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all duration-300"
+                    id="mobile-menu-btn">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -597,21 +777,31 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
-            <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="#home"
-                    class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md transition-colors">Home</a>
-                <a href="#about"
-                    class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md transition-colors">About</a>
-                <a href="#skills"
-                    class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md transition-colors">Skills</a>
-                <a href="#projects"
-                    class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md transition-colors">Projects</a>
-                <a href="#contact"
-                    class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md transition-colors">Contact</a>
-            </div>
+
+        <!-- Scrolled state indicator -->
+        <div class="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 transition-all duration-300"
+            id="scroll-indicator"></div>
+    </nav>
+    <!-- Mobile menu -->
+    <div class="hidden md:hidden bg-white/98 backdrop-blur-md border-t border-gray-100 shadow-lg" id="mobile-menu">
+        <div class="px-4 pt-2 pb-3 space-y-1">
+            <a href="#home"
+                class="block px-4 py-3 text-gray-700 hover:bg-purple-50 rounded-lg transition-colors font-medium">🏠
+                Home</a>
+            <a href="#services"
+                class="block px-4 py-3 text-gray-700 hover:bg-purple-50 rounded-lg transition-colors font-medium">💼
+                Services</a>
+            <a href="#projects"
+                class="block px-4 py-3 text-gray-700 hover:bg-purple-50 rounded-lg transition-colors font-medium">✨
+                Portfolio</a>
+            <a href="#testimonials"
+                class="block px-4 py-3 text-gray-700 hover:bg-purple-50 rounded-lg transition-colors font-medium">⭐
+                Reviews</a>
+            <a href="#contact"
+                class="block px-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-semibold text-center shadow-md">Get
+                Quote</a>
         </div>
+    </div>
     </nav>
 
     <!-- Hero Section -->
@@ -636,44 +826,53 @@
         </div>
 
         <div class="max-w-7xl mx-auto text-center relative z-10 w-full">
-            <!-- Greeting Badge -->
+            <!-- Greeting Badge - Enhanced -->
             <div
-                class="inline-flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 fade-in border border-white/20">
-                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                <span class="text-sm font-medium">Available for new projects</span>
+                class="inline-flex items-center space-x-3 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full mb-8 fade-in border-2 border-white/30 shadow-lg hover:scale-105 transition-transform duration-300">
+                <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></span>
+                <span class="text-sm font-bold">🚀 Available for New Projects</span>
+                <span class="text-xs bg-white/20 px-2 py-1 rounded-full font-semibold">Hire Me</span>
             </div>
 
-            <!-- Main Heading with Typing Effect -->
-            <h1 class="text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 fade-in">
-                <span class="block mb-2">Hi, I'm</span>
+            <!-- Main Heading with Typing Effect - Enhanced -->
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 fade-in">
+                <span class="block mb-3 text-2xl md:text-3xl font-semibold text-purple-200">Transform Your Ideas
+                    Into</span>
                 <span
-                    class="block bg-gradient-to-r from-white via-purple-100 to-white bg-clip-text text-transparent animate-gradient">
-                    Ubaoha Chinemerem
+                    class="block bg-gradient-to-r from-white via-purple-100 to-white bg-clip-text text-transparent animate-gradient mb-2">
+                    Digital Excellence
                 </span>
+                <span class="block text-xl md:text-2xl text-purple-200 font-medium mt-2">Hi, I'm <span
+                        class="text-white font-bold">Ubaoha Chinemerem</span></span>
             </h1>
 
             <!-- Animated Role Text -->
             <div class="mb-6 fade-in delay-200">
-                <p class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
-                    <span class="inline-block typing-text">Full-Stack Developer</span>
-                    <span class="inline-block typing-cursor">|</span>
-                </p>
-                <p class="text-xl md:text-2xl text-purple-100 mt-2">& Designer</p>
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                        <span class="typing-text">Full-Stack Developer</span>
+                    </p>
+                    <p class="text-xl md:text-2xl text-purple-100 mt-2">& Designer</p>
+                </div>
             </div>
 
-            <!-- Description -->
+            <!-- Description - Business Focused -->
             <p
-                class="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-purple-100 mb-12 fade-in delay-300 leading-relaxed">
-                I craft <span class="font-semibold text-white">beautiful</span> and <span
-                    class="font-semibold text-white">functional</span> web experiences
-                using modern technologies. Turning ideas into reality, one line of code at a time.
+                class="text-xl md:text-2xl lg:text-3xl max-w-4xl mx-auto text-white mb-8 fade-in delay-300 leading-relaxed font-semibold">
+                Full-Stack Developer & Designer | Building <span class="text-yellow-300">High-Performance</span> Web
+                Solutions That Drive <span class="text-yellow-300">Business Growth</span>
+            </p>
+            <p class="text-base md:text-lg max-w-2xl mx-auto text-purple-100 mb-12 fade-in delay-400">
+                🎯 Delivering exceptional user experiences | ⚡ Fast, scalable applications | 💼 Trusted by businesses
+                worldwide
             </p>
 
             <!-- Hero Image - Workspace/Desk Setup -->
             <div class="mb-12 fade-in delay-500 flex justify-center">
                 <div class="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
                     <img src="src/images/workspace-desk.jpg" alt="Modern workspace setup with coding environment"
-                        class="w-full h-auto object-cover" onerror="handleImageError(this)"
+                        class="w-full h-auto object-cover" loading="lazy" decoding="async"
+                        onerror="handleImageError(this)"
                         style="min-height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                     <!-- Fallback gradient if image not found -->
                     <div
@@ -683,34 +882,57 @@
             </div>
             <!-- Image Suggestion: workspace-desk.jpg - A clean, modern desk setup with laptop, monitor, keyboard, plants, and good lighting -->
 
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16 fade-in delay-400">
-                <a href="#projects"
-                    class="group relative bg-white text-purple-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 hover:scale-105 inline-flex items-center space-x-2 overflow-hidden">
-                    <span class="relative z-10 flex items-center space-x-2">
-                        <span>View My Work</span>
-                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none"
+            <!-- CTA Buttons - Enhanced & Compelling -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16 fade-in delay-400">
+                <a href="#contact"
+                    class="group relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 text-gray-900 px-12 py-5 rounded-2xl font-extrabold text-lg hover:from-yellow-300 hover:via-yellow-400 hover:to-orange-400 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50 hover:scale-110 inline-flex items-center space-x-3 overflow-hidden transform hover:-translate-y-1">
+                    <span class="relative z-10 flex items-center space-x-3">
+                        <span class="text-xl">💼 Start Your Project</span>
+                        <svg class="w-6 h-6 transform group-hover:translate-x-2 transition-transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                     </span>
                     <div
-                        class="absolute inset-0 bg-gradient-to-r from-purple-400 to-indigo-400 opacity-0 group-hover:opacity-10 transition-opacity">
+                        class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-2xl">
+                    </div>
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity -z-10">
                     </div>
                 </a>
-                <a href="#contact"
-                    class="group relative bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 inline-flex items-center space-x-2 backdrop-blur-sm">
-                    <span class="flex items-center space-x-2">
-                        <span>Get In Touch</span>
-                        <svg class="w-5 h-5 transform group-hover:rotate-12 transition-transform" fill="none"
+                <a href="#projects"
+                    class="group relative bg-white/10 backdrop-blur-md border-2 border-white/40 text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-white/20 hover:border-white transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-110 inline-flex items-center space-x-3 transform hover:-translate-y-1">
+                    <span class="flex items-center space-x-3">
+                        <span>✨ View Portfolio</span>
+                        <svg class="w-6 h-6 transform group-hover:rotate-12 transition-transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
                             </path>
                         </svg>
                     </span>
                 </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="flex flex-wrap justify-center items-center gap-8 mb-8 fade-in delay-500">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">100%</div>
+                    <div class="text-sm text-purple-200">Client Satisfaction</div>
+                </div>
+                <div class="w-px h-12 bg-white/30"></div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">24/7</div>
+                    <div class="text-sm text-purple-200">Support Available</div>
+                </div>
+                <div class="w-px h-12 bg-white/30"></div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">Fast</div>
+                    <div class="text-sm text-purple-200">Delivery Time</div>
+                </div>
             </div>
 
             <!-- Quick Stats with Images -->
@@ -719,7 +941,8 @@
                     <div class="mb-3 flex justify-center">
                         <div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
                             <img src="src/images/stats-projects.jpg" alt="Projects showcase"
-                                class="w-full h-full object-cover" onerror="handleImageError(this)"
+                                class="w-full h-full object-cover" loading="lazy" decoding="async"
+                                onerror="handleImageError(this)"
                                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                         </div>
                     </div>
@@ -730,7 +953,7 @@
                     <div class="mb-3 flex justify-center">
                         <div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
                             <img src="src/images/stats-tech.jpg" alt="Technologies" class="w-full h-full object-cover"
-                                onerror="handleImageError(this)"
+                                loading="lazy" decoding="async" onerror="handleImageError(this)"
                                 style="background: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);">
                         </div>
                     </div>
@@ -741,7 +964,8 @@
                     <div class="mb-3 flex justify-center">
                         <div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
                             <img src="src/images/stats-dedicated.jpg" alt="Dedication"
-                                class="w-full h-full object-cover" onerror="handleImageError(this)"
+                                class="w-full h-full object-cover" loading="lazy" decoding="async"
+                                onerror="handleImageError(this)"
                                 style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                         </div>
                     </div>
@@ -1264,17 +1488,105 @@
         </div>
     </section>
 
+    <!-- Services Section - NEW -->
+    <section id="services" class="py-20 px-4 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <div class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">💼
+                    What I Offer</div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">Services That <span
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Drive
+                        Results</span></h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive web development solutions tailored to
+                    your business needs</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="group bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">🎨</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-purple-600 transition-colors">Web
+                        Design</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Stunning, user-friendly designs that convert visitors
+                        into customers. Modern UI/UX that reflects your brand.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-600">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Responsive Design</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> UI/UX Optimization</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Brand Identity</li>
+                    </ul>
+                    <a href="#contact"
+                        class="text-purple-600 font-semibold hover:text-purple-700 inline-flex items-center">Get Started
+                        <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg></a>
+                </div>
+                <div
+                    class="group bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8 shadow-xl border-2 border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-3xl">⚡</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-purple-600 transition-colors">Web
+                        Development</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Fast, scalable web applications built with
+                        cutting-edge technologies. Performance-optimized and SEO-friendly.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-600">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Full-Stack Solutions
+                        </li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Performance Optimized
+                        </li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> SEO Friendly</li>
+                    </ul>
+                    <a href="#contact"
+                        class="text-purple-600 font-semibold hover:text-purple-700 inline-flex items-center">Get Started
+                        <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg></a>
+                </div>
+                <div
+                    class="group bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-orange-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">🚀</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-purple-600 transition-colors">
+                        Maintenance & Support</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">24/7 support and regular updates to keep your website
+                        running smoothly. Security updates and performance monitoring.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-600">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 24/7 Support</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Regular Updates</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Security Monitoring
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="text-purple-600 font-semibold hover:text-purple-700 inline-flex items-center">Get Started
+                        <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-7xl mx-auto">
             <!-- Section Header -->
             <div class="text-center mb-16 animate-on-scroll fade-up">
+                <div class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">✨
+                    Portfolio</div>
                 <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
                     Featured <span
                         class="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Projects</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Explore my latest work and creative solutions
+                    Real results for real businesses - See how I've helped clients succeed
                 </p>
             </div>
 
@@ -1549,6 +1861,74 @@
         </div>
     </section>
 
+    <!-- Testimonials Section - NEW -->
+    <section id="testimonials" class="py-20 px-4 bg-gradient-to-b from-white to-purple-50/30 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-on-scroll fade-up">
+                <div class="inline-block px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold mb-4">⭐
+                    Client Reviews</div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">What Clients <span
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Say</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trusted by businesses worldwide - Real feedback from
+                    real clients</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed italic">"Outstanding work! Delivered exactly what we
+                        needed, on time and within budget. The website looks amazing and performs flawlessly."</p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            JD</div>
+                        <div>
+                            <div class="font-bold text-gray-800">John Doe</div>
+                            <div class="text-sm text-gray-500">CEO, Tech Startup</div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8 shadow-xl border-2 border-purple-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed italic">"Professional, responsive, and incredibly
+                        talented. Our conversion rate increased by 40% after the redesign. Highly recommended!"</p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            SM</div>
+                        <div>
+                            <div class="font-bold text-gray-800">Sarah Miller</div>
+                            <div class="text-sm text-gray-500">Marketing Director</div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed italic">"Best developer we've worked with! Clean code,
+                        fast delivery, and excellent communication throughout the project."</p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            MJ</div>
+                        <div>
+                            <div class="font-bold text-gray-800">Michael Johnson</div>
+                            <div class="text-sm text-gray-500">Founder, Digital Agency</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact"
         class="py-20 px-4 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
@@ -1566,13 +1946,15 @@
         <div class="max-w-6xl mx-auto relative z-10">
             <!-- Section Header -->
             <div class="text-center mb-16 animate-on-scroll fade-up">
+                <div class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">💬
+                    Let's Talk</div>
                 <h2 class="text-5xl md:text-6xl font-bold mb-4 text-gray-800">
-                    Get In <span
-                        class="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Touch</span>
+                    Ready to <span
+                        class="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Start Your
+                        Project?</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
-                    visions.
+                    Get a free quote today! I'll respond within 24 hours. Let's turn your vision into reality.
                 </p>
             </div>
 
@@ -1834,6 +2216,11 @@
                         top: targetPosition,
                         behavior: 'auto'
                     });
+
+                    // Update active nav link after scroll
+                    setTimeout(() => {
+                        updateActiveNavLink();
+                    }, 100);
                 }
             });
         });
@@ -1845,20 +2232,85 @@
 
         function updateNavbar() {
             const currentScroll = window.pageYOffset;
+            const scrollIndicator = document.getElementById('scroll-indicator');
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = (currentScroll / maxScroll) * 100;
+
             if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
+                navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
             } else {
                 navbar.classList.remove('scrolled');
+                navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
             }
+
+            // Update scroll indicator
+            if (scrollIndicator) {
+                scrollIndicator.style.width = scrollPercentage + '%';
+            }
+
+            // Update active navigation link based on scroll position
+            updateActiveNavLink();
+
             lastScroll = currentScroll;
             ticking = false;
         }
 
+        // Function to update active navigation link
+        function updateActiveNavLink() {
+            const sections = ['home', 'services', 'projects', 'testimonials', 'contact'];
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollPosition = window.pageYOffset + 100; // Offset for navbar height
+
+            sections.forEach((sectionId, index) => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionBottom = sectionTop + sectionHeight;
+
+                    // Check if section is in viewport
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        // Add active class to current section's link
+                        const currentLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                        if (currentLink) {
+                            currentLink.classList.add('active');
+                        }
+                    }
+                }
+            });
+
+            // Special case for top of page
+            if (scrollPosition < 100) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const homeLink = document.querySelector('.nav-link[href="#home"]');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                }
+            }
+        }
+
+        // Optimized scroll listener with passive option for better performance
+        let scrollTimeout;
         window.addEventListener('scroll', () => {
+            // Clear previous timeout
+            clearTimeout(scrollTimeout);
+            // Throttle scroll events more aggressively
             if (!ticking) {
                 window.requestAnimationFrame(updateNavbar);
                 ticking = true;
             }
+            // Additional debounce for extra performance
+            scrollTimeout = setTimeout(() => {
+                ticking = false;
+            }, 150);
+        }, { passive: true });
+
+        // Initialize active nav link on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateActiveNavLink();
         });
 
         // Intersection Observer DISABLED - No animations to prevent page movement
@@ -1889,6 +2341,7 @@
                 let charIndex = 0;
                 let isDeleting = false;
                 let typingSpeed = 100;
+                let typingTimeout; // Declare timeout variable for cleanup
 
                 function typeRole() {
                     const currentRole = roles[currentRoleIndex];
@@ -1912,9 +2365,10 @@
                         typingSpeed = 500; // Pause before typing next
                     }
 
-                    setTimeout(typeRole, typingSpeed);
+                    // Clear previous timeout for better performance
+                    clearTimeout(typingTimeout);
+                    typingTimeout = setTimeout(typeRole, typingSpeed);
                 }
-
                 // Start typing effect after a delay
                 setTimeout(typeRole, 1000);
             }
@@ -1926,24 +2380,25 @@
             badge.style.animationDelay = `${index * 0.1}s`;
         });
 
-        // Animate skill progress bars when they come into view
+        // Animate skill progress bars when they come into view - Optimized
         const progressObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const progressBar = entry.target;
-                    const progress = progressBar.getAttribute('data-progress');
-
-                    // Set the width and add animated class
-                    progressBar.style.setProperty('--progress-width', `${progress}%`);
-                    progressBar.classList.add('animated');
-
+                    // Use requestAnimationFrame for smooth animation
+                    requestAnimationFrame(() => {
+                        const progressBar = entry.target;
+                        const progress = progressBar.getAttribute('data-progress');
+                        // Set the width and add animated class
+                        progressBar.style.setProperty('--progress-width', `${progress}%`);
+                        progressBar.classList.add('animated');
+                    });
                     // Stop observing once animated
-                    progressObserver.unobserve(progressBar);
+                    progressObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.5,
-            rootMargin: '0px'
+            threshold: 0.3, // Reduced threshold for earlier trigger
+            rootMargin: '50px' // Start animation slightly before visible
         });
 
         // Observe all progress bars
